@@ -31,7 +31,7 @@ function BudgetList({ budgets, catTotals, formatMoney }) {
   return (
     <div>
       {Object.keys(budgets).length === 0 ? (
-        <div className="text-center text-sm text-gray-400 p-6 mx-auto w full">No budgets set</div>
+        <div className="text-center text-sm text-gray-400 p-6 mx-auto w-full">No budgets set</div>
       ) : (
         Object.entries(budgets).map(([cat, limit]) => {
           const spent = catTotals[cat] || 0;
@@ -199,8 +199,8 @@ export default function App() {
 
   const startEdit = (type, item) => {
     setEditing({ type, id: item.id });
-    if (type === 'income') setIncomeForm({ source: item.source || '', amount: item.amount || '' });
-    else setExpenseForm({ description: item.description || '', category: item.category || '', amount: item.amount || '' });
+    if (type === 'income') setIncomeForm({ source: item.source || '', amount: String(item.amount ?? '') });
+    else setExpenseForm({ description: item.description || '', category: item.category || '', amount: String(item.amount ?? '') });
   };
 
   const saveBudget = async () => {
@@ -240,7 +240,7 @@ export default function App() {
   return (
     <div className={`min-h-screen w-screen mx-auto ${theme === 'light' ? 'bg-gray-50 text-gray-800' : 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 text-gray-100'}`}>
       <header className={`backdrop-blur sticky top-0 z-50 ${theme === 'light' ? 'bg-white/60 border-b' : 'bg-slate-900/60 border-b border-slate-800'} px-4 py-3`}> 
-        <div className=" mx-auto flex w-screen items-center justify-between">
+        <div className="max-w-6xl mx-auto flex w-full items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="p-2 rounded-md bg-gradient-to-r from-indigo-600 to-cyan-500 text-white">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L3 6v6c0 5 3.58 9.74 9 10 5.42-.26 9-5 9-10V6l-9-4z" fill="currentColor"/></svg>
